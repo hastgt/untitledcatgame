@@ -4792,6 +4792,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 279956828048523980, guid: 86e490ce3f9a2d74fb1663cf1359a421,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 1700
+      objectReference: {fileID: 0}
     - target: {fileID: 4999809687324524796, guid: 86e490ce3f9a2d74fb1663cf1359a421,
         type: 3}
       propertyPath: m_Enabled
