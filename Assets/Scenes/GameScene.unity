@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 737438236}
-  _soulsCollected: 0
+  _soulsCollected: 1
   _maxSoulText: {fileID: 1330750008}
   _countText: {fileID: 1688978520}
   _soulIcon: {fileID: 1470737113}
