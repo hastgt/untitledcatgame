@@ -32,21 +32,6 @@ public class ControlIlluminationShader : MonoBehaviour
     private static readonly int GlobaLmaskSoftness = Shader.PropertyToID("GLOBALmask_Softness");
     private static readonly int GlobaLmaskRadius = Shader.PropertyToID("GLOBALmask_Radius");
 
-    private void Update()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        { 
-            Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
-            Debug.Log(hit.collider.name);
-            if(hit.collider.name == "soulPrefab")
-            {
-                uiCounting.FoundTheSoul(hit);
-            }
-        }
-    }
-
     private void Awake()
     {
         _mCamera = Camera.main;
@@ -54,7 +39,10 @@ public class ControlIlluminationShader : MonoBehaviour
     private void Update()
     {
         UndistortedOnMouseClick();
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            SpawnUndistorted(GetMouseOnScreenPosition());
+        }
     }
 
     public Vector3 GetMouseOnScreenPosition()
@@ -64,7 +52,7 @@ public class ControlIlluminationShader : MonoBehaviour
 
         return _mCamera.ScreenToWorldPoint(touchPoint);
     }
-    public void UndistortOnMouseClick()
+    public void UndistortedOnMouseClick()
     {
         Vector3 neededPos = GetMouseOnScreenPosition();
 
