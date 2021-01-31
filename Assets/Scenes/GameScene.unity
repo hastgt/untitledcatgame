@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 52113585}
   - component: {fileID: 52113584}
-  - component: {fileID: 52113586}
   m_Layer: 0
   m_Name: Background Sprite
   m_TagString: Untagged
@@ -178,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b684e7e50ec729741916244466fbc984, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5c29539334ce3241a8a371fcb826a7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,35 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &52113586
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52113583}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 100, y: 50}
-    newSize: {x: 20, y: 10}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -50, y: 25}
-      - {x: -50, y: -25}
-      - {x: 50, y: -25}
-      - {x: 50, y: 25}
 --- !u!1 &501200222
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_TrackedObjectOffset: {x: 13.03, y: -28.1, z: 0}
   m_LookaheadTime: 0.2
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
@@ -464,7 +434,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 66.87
+  field of view: 92.88
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -490,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737438233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.479998, y: 17.578194, z: -13.28}
+  m_LocalPosition: {x: 21.509998, y: -10.99, z: -13.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 975505379}
@@ -822,7 +792,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1403743874}
   m_Lens:
-    FieldOfView: 66.87
+    FieldOfView: 92.88
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -830,7 +800,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9517543, y: 1}
+    m_SensorSize: {x: 1.7763714, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -847,7 +817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975505377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000019073486, y: -0.46819305, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 615786155}
@@ -866,7 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 52113586}
+  m_BoundingShape2D: {fileID: 0}
   m_Damping: 0
   m_MaxWindowSize: 0
 --- !u!1 &996777369
@@ -916,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1073885414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1432,7 +1402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1582077772
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1522,6 +1492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distortion: {fileID: 2100000, guid: f63e7f3ae45080342b972cce858cdddb, type: 2}
   distortAmount: 0.01
+  timesDistortion: 0
 --- !u!1 &1650390932
 GameObject:
   m_ObjectHideFlags: 0
