@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
 
     public void MuteAudio()
     {
-        mainBus.setVolume(-80);
+        mainBus.setVolume(0);
     }
 
     private void OnDestroy()
