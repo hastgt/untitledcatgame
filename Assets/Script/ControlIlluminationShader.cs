@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class ControlIlluminationShader : MonoBehaviour
 {
+    public static ControlIlluminationShader Instance
+    {
+        get;
+        private set;
+    }
+
     public float cameraZOffset;
     public GameObject undistortedLins;
 
@@ -14,6 +20,7 @@ public class ControlIlluminationShader : MonoBehaviour
     private Vector3 mousePos, smoothPoint;
     private Ray ray;
     private RaycastHit hit;
+    public UIcountingSouls uiCounting;
     
     [Range(0, 10)]
     [SerializeField] private float radius, softness;
@@ -24,20 +31,36 @@ public class ControlIlluminationShader : MonoBehaviour
     private static readonly int GlobaLmaskSoftness = Shader.PropertyToID("GLOBALmask_Softness");
     private static readonly int GlobaLmaskRadius = Shader.PropertyToID("GLOBALmask_Radius");
 
-    
+    private void Update()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        { 
+            Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
+            Debug.Log(hit.collider.name);
+            if(hit.collider.name == "soulPrefab")
+            {
+                uiCounting.FoundTheSoul(hit);
+            }
+        }
+    }
+
     private void Awake()
     {
         _mCamera = Camera.main;
-    }
-    private void Update()
-    {
-        UndistortedOnMouseClick();
 
-        if (Input.GetMouseButton(0))
+        if (Instance != null)
         {
-            SpawnUndistorted();
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
+
     public Vector3 GetMouseOnScreenPosition()
     {
         // pixel coordinates (x, y)
@@ -45,7 +68,7 @@ public class ControlIlluminationShader : MonoBehaviour
 
         return _mCamera.ScreenToWorldPoint(touchPoint);
     }
-    private void UndistortedOnMouseClick()
+    public void UndistortOnMouseClick()
     {
         Vector3 neededPos = GetMouseOnScreenPosition();
 
@@ -66,6 +89,5 @@ public class ControlIlluminationShader : MonoBehaviour
     {
         cloneUndistortedLins = Instantiate(undistortedLins, new Vector3(GetMouseOnScreenPosition().x, 
             GetMouseOnScreenPosition().y, GetMouseOnScreenPosition().z - 2), undistortedLins.transform.rotation);
-        Destroy(cloneUndistortedLins, 3.0f);
     }
 }

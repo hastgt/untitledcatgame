@@ -28,9 +28,5 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-<<<<<<< HEAD
     - _DistortionAmount: 0.38999733
-=======
-    - _DistortionAmount: -0.53000236
->>>>>>> main
     m_Colors: []

@@ -7,25 +7,6 @@ public class AudioManager : MonoBehaviour
     [FMODUnity.EventRef] public string musicEventPath;
     [FMODUnity.EventRef] public string sfxEventPath;
     private static FMOD.Studio.EventInstance music;
-    public static AudioManager Instance
-    {
-        get;
-        private set;
-    }
-
-    void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +23,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayMusic(string path)
     {
-        music.start();
-        music.release();
+
     }
 
     private void OnDestroy()
