@@ -153,5 +153,6 @@ public class ControlIlluminationShader : MonoBehaviour
             GetMouseOnScreenPosition().y, GetMouseOnScreenPosition().z - 2);
 
         cloneUndistortedLins = Instantiate(undistortedLins, pos, undistortedLins.transform.rotation);
+        Destroy(cloneUndistortedLins, 3f);
     }
 }
