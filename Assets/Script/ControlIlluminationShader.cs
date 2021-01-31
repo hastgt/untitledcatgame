@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using TMPro;
+using UnityEngine.UI;
 
 public class ControlIlluminationShader : MonoBehaviour
 {
@@ -38,11 +40,78 @@ public class ControlIlluminationShader : MonoBehaviour
     }
     private void Update()
     {
+        
         UndistortedOnMouseClick();
         if (Input.GetMouseButtonDown(0))
         {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, uiCounting.soulsLayer))
+            {
+                if (hit.collider.name == "soulPrefabMice")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[3].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[3];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+                if (hit.collider.name == "soulPrefabCave")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[0].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[0];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+                if (hit.collider.name == "soulPrefabBlanket")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[2].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[2];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+                if (hit.collider.name == "soulPrefabWallpaper")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[4].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[4];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+                if (hit.collider.name == "soulPrefabTop")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[5].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[5];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+                if (hit.collider.name == "soulPrefabWindow")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[1].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[1];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
+            }
             SpawnUndistorted(GetMouseOnScreenPosition());
         }
+    }
+
+    private IEnumerator DisableThings(TMP_Text text, Image image)
+    {
+        yield return new WaitForSeconds(6);
+        text.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
     }
 
     public Vector3 GetMouseOnScreenPosition()

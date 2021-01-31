@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34198837312775965}
   - component: {fileID: 34198837312775966}
-  - component: {fileID: 34198837312775964}
+  - component: {fileID: 3482019162565036143}
   m_Layer: 9
   m_Name: soulPrefab
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34198837312775967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.98, y: 12.85, z: 0}
+  m_LocalPosition: {x: 6.98, y: 12.85, z: -2}
   m_LocalScale: {x: 0.8823416, y: 0.9329243, z: 1.4336917}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 53a7fdf11ca01af41841651a0d6460d6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -82,19 +82,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &34198837312775964
-CircleCollider2D:
+--- !u!135 &3482019162565036143
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34198837312775967}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.004373063, y: 0.020682078}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.81580997
+  m_Radius: 0.7290502
+  m_Center: {x: 0, y: 0, z: 0.4259497}
