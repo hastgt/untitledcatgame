@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour
     [FMODUnity.EventRef] public string musicEventPath;
     [FMODUnity.EventRef] public string sfxEventPath;
     private static FMOD.Studio.EventInstance music;
+
+    private FMOD.Studio.Bus mainBus;
+
     public static AudioManager Instance
     {
         get;
@@ -24,6 +27,8 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        mainBus = FMODUnity.RuntimeManager.GetBus("bus:/Main");
     }
 
     void Start()
@@ -38,9 +43,9 @@ public class AudioManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(sfxEventPath);
     }
 
-    private void PlayMusic(string path)
+    public void MuteAudio()
     {
-
+        mainBus.setVolume(-80);
     }
 
     private void OnDestroy()
