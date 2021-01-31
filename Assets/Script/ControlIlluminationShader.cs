@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ControlIlluminationShader : MonoBehaviour
 {
-    public Camera camera;
     public Transform player;
     public float cameraZOffset;
 
+    private Camera _mCamera;
     private Vector3 mousePos, smoothPoint;
     private Ray ray;
     private RaycastHit hit;
@@ -21,6 +22,11 @@ public class ControlIlluminationShader : MonoBehaviour
     private static readonly int GlobaLmaskPosition = Shader.PropertyToID("GLOBALmask_Position");
     private static readonly int GlobaLmaskSoftness = Shader.PropertyToID("GLOBALmask_Softness");
     private static readonly int GlobaLmaskRadius = Shader.PropertyToID("GLOBALmask_Radius");
+
+    private void Awake()
+    {
+        _mCamera = Camera.main;
+    }
 
     // Update is called once per frame
     void Update()
@@ -47,7 +53,7 @@ public class ControlIlluminationShader : MonoBehaviour
 
         // z coordinate of game object on screen
 
-        return camera.ScreenToWorldPoint(touchPoint);
+        return _mCamera.ScreenToWorldPoint(touchPoint);
     }
 
     private void DistortOnMouseClick()
@@ -55,7 +61,7 @@ public class ControlIlluminationShader : MonoBehaviour
         Vector3 neededPos = GetMouseOnScreenPosition();
 
         mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-        ray = camera.ScreenPointToRay(mousePos);
+        ray = _mCamera.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out hit))
         {

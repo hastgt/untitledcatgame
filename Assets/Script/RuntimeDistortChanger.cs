@@ -7,6 +7,7 @@ public class RuntimeDistortChanger : MonoBehaviour
 {
     public Material distortion;
     public float distortAmount;
+    public float timesDistortion;
 
     private float _distortionAmount;
     private float _normalMapOffset;
@@ -17,7 +18,7 @@ public class RuntimeDistortChanger : MonoBehaviour
     private void Start()
     {
         _distortionAmount = -3f;
-        InvokeRepeating(nameof(AnimateDistortion), 0f, 10f);
+        InvokeRepeating(nameof(AnimateDistortion), 0f, timesDistortion);
     }
 
     void FixedUpdate()
