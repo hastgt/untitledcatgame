@@ -15,23 +15,56 @@ public class UIcountingSouls : MonoBehaviour
     public TMP_Text _countText;
     public Image _soulIcon;
 
+    public List<TMP_Text> mementoText;
+    public Image textBox;
+
+    public LayerMask soulsLayer;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity);
-            if (hit.collider != null)
+            Debug.Log("click registered");
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red, 2f);
+            if (Physics.Raycast(ray, out hit,10000f, soulsLayer))
             {
-                hit.collider.gameObject.SetActive(false);
-                _soulsCollected++;
-                _countText.text = _soulsCollected.ToString();
+                Debug.Log("casting ray");
 
-                StartCoroutine(FadeInText(_countText));
-                StartCoroutine(FadeInText(_maxSoulText));
-                StartCoroutine(FadeInImage(_soulIcon));
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.collider.name);
+                    hit.collider.gameObject.SetActive(false);
+                    _soulsCollected++;
+                    _countText.text = _soulsCollected.ToString();
+
+                    StartCoroutine(FadeInText(_countText));
+                    StartCoroutine(FadeInText(_maxSoulText));
+                    StartCoroutine(FadeInImage(_soulIcon));
+
+                }
                 
             }
+        }
+
+        switch (_soulsCollected)
+        {
+            case 1:
+                FirstMemento();
+                break;
+            case 2:
+                SecondMemento();
+                break;
+            case 3:
+                ThirdMemento();
+                break;
+            case 4:
+                FourthMemento();
+                break;
+            case 5:
+                FifthMemento();
+                break;
         }
     }
 
@@ -76,6 +109,87 @@ public class UIcountingSouls : MonoBehaviour
         while (image.color.a > 0.0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / 0.5f));
+            yield return null;
+        }
+    }
+
+    private void FirstMemento()
+    {
+        StartCoroutine(FadeInTextbox(textBox));
+        FadeInMementoText(mementoText[_soulsCollected - 1]);
+    }
+
+    private void SecondMemento()
+    {
+
+    }
+
+    private void ThirdMemento()
+    {
+
+    }
+
+    private void FourthMemento()
+    {
+
+    }
+
+    private void FifthMemento()
+    {
+
+    }
+
+    private void SixthMemento()
+    {
+
+    }
+
+    private void SeventhMemento()
+    {
+
+    }
+
+    private IEnumerator FadeInTextbox(Image image)
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
+        while (image.color.a < 1.0f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + (Time.deltaTime / 0.5f));
+            yield return null;
+        }
+        yield return new WaitForSeconds(6);
+        StartCoroutine(FadeOutTextbox(image));
+    }
+
+    private IEnumerator FadeOutTextbox(Image image)
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+        while (image.color.a > 0.0f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / 0.5f));
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeInMementoText(TMP_Text text)
+    {
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+        while (text.color.a < 1.0f)
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + (Time.deltaTime / 0.5f));
+            yield return null;
+        }
+        yield return new WaitForSeconds(6);
+        StartCoroutine(FadeOutMementoText(text));
+
+    }
+
+    private IEnumerator FadeOutMementoText(TMP_Text text)
+    {
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+        while (text.color.a > 0.0f)
+        {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - (Time.deltaTime / 0.5f));
             yield return null;
         }
     }
