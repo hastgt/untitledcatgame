@@ -24,31 +24,39 @@ public class UIcountingSouls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("click registered");
+            //Debug.Log("click registered");
             
+            //RaycastHit hit;
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            //Debug.DrawRay(ray.origin, ray.direction, Color.red, 2f);
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            Debug.DrawRay(ray.origin, ray.direction, Color.red, 2f);
-
-            if (Physics.Raycast(ray, out hit,Mathf.Infinity, soulsLayer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Debug.Log("casting ray");
-
-                if (hit.collider != null)
-                {
-                    Debug.Log(hit.collider.name);
-                    hit.collider.gameObject.SetActive(false);
-                    _soulsCollected++;
-                    _countText.text = _soulsCollected.ToString();
-
-                    StartCoroutine(FadeInText(_countText));
-                    StartCoroutine(FadeInText(_maxSoulText));
-                    StartCoroutine(FadeInImage(_soulIcon));
-
-                }
-                
+                Debug.Log("heh");
+                Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
             }
+
+            //if (Physics.Raycast(ray, out hit,Mathf.Infinity, soulsLayer))
+            //{
+            //    Debug.Log("casting ray");
+
+            //    if (hit.collider != null)
+            //    {
+            //        Debug.Log(hit.collider.name);
+            //        hit.collider.gameObject.SetActive(false);
+            //        _soulsCollected++;
+            //        _countText.text = _soulsCollected.ToString();
+
+            //        StartCoroutine(FadeInText(_countText));
+            //        StartCoroutine(FadeInText(_maxSoulText));
+            //        StartCoroutine(FadeInImage(_soulIcon));
+
+            //    }
+                
+            //}
         }
 
         switch (_soulsCollected)
