@@ -77,24 +77,6 @@ public class UIcountingSouls : MonoBehaviour
         StartCoroutine(FadeInText(_maxSoulText));
         StartCoroutine(FadeInImage(_soulIcon));
 
-        switch (_soulsCollected)
-        {
-            case 1:
-                FirstMemento();
-                break;
-            case 2:
-                SecondMemento();
-                break;
-            case 3:
-                ThirdMemento();
-                break;
-            case 4:
-                FourthMemento();
-                break;
-            case 5:
-                FifthMemento();
-                break;
-        }
     }
 
     private IEnumerator FadeInText(TMP_Text text)
@@ -140,63 +122,6 @@ public class UIcountingSouls : MonoBehaviour
             image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / 0.5f));
             yield return null;
         }
-    }
-
-    private void FirstMemento()
-    {
-        textBox.gameObject.SetActive(true);
-        TMP_Text text = mementoText[_soulsCollected - 1];
-        text.gameObject.SetActive(true);
-        StartCoroutine(DisableText(text, textBox));
-    }
-
-    private void SecondMemento()
-    {
-        textBox.gameObject.SetActive(true);
-        TMP_Text text = mementoText[_soulsCollected - 1];
-        text.gameObject.SetActive(true);
-        StartCoroutine(DisableText(text, textBox));
-    }
-
-    private void ThirdMemento()
-    {
-        textBox.gameObject.SetActive(true);
-        TMP_Text text = mementoText[_soulsCollected - 1];
-        text.gameObject.SetActive(true);
-        StartCoroutine(DisableText(text, textBox));
-    }
-
-    private void FourthMemento()
-    {
-        textBox.gameObject.SetActive(true);
-        TMP_Text text = mementoText[_soulsCollected - 1];
-        text.gameObject.SetActive(true);
-        StartCoroutine(DisableText(text, textBox));
-    }
-
-    private void FifthMemento()
-    {
-        textBox.gameObject.SetActive(true);
-        TMP_Text text = mementoText[_soulsCollected - 1];
-        text.gameObject.SetActive(true);
-        StartCoroutine(DisableText(text, textBox));
-    }
-
-    private void SixthMemento()
-    {
-
-    }
-
-    private void SeventhMemento()
-    {
-
-    }
-
-    private IEnumerator DisableText(TMP_Text text, Image textBox)
-    {
-        yield return new WaitForSeconds(6);
-        text.gameObject.SetActive(false);
-        textBox.gameObject.SetActive(false);
     }
 
     
