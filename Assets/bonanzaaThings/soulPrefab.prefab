@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 34198837312775966}
   - component: {fileID: 34198837312775964}
   m_Layer: 0
-  m_Name: soul
+  m_Name: soulPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
