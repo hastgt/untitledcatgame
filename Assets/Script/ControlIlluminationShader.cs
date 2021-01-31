@@ -8,7 +8,9 @@ public class ControlIlluminationShader : MonoBehaviour
 {
     public Transform player;
     public float cameraZOffset;
+    public GameObject undistortedLins;
 
+    private GameObject cloneUndistortedLins;
     private Camera _mCamera;
     private Vector3 mousePos, smoothPoint;
     private Ray ray;
@@ -55,7 +57,6 @@ public class ControlIlluminationShader : MonoBehaviour
 
         return _mCamera.ScreenToWorldPoint(touchPoint);
     }
-
     private void DistortOnMouseClick()
     {
         Vector3 neededPos = GetMouseOnScreenPosition();
@@ -72,5 +73,10 @@ public class ControlIlluminationShader : MonoBehaviour
 
         Shader.SetGlobalFloat(GlobaLmaskRadius, radius);
         Shader.SetGlobalFloat(GlobaLmaskSoftness, softness);
+    }
+    private void SpawnUndistorted()
+    {
+        
+        //cloneUndistortedLins = Instantiate(undistortedLins, GetMouseOnScreenPosition(), spawnObjectTransform.rotation);
     }
 }
