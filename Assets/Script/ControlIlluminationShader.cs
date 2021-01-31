@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ControlIlluminationShader : MonoBehaviour
 {
@@ -49,16 +50,11 @@ public class ControlIlluminationShader : MonoBehaviour
     private void Awake()
     {
         _mCamera = Camera.main;
-
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+    }
+    private void Update()
+    {
+        UndistortedOnMouseClick();
+        
     }
 
     public Vector3 GetMouseOnScreenPosition()
@@ -85,9 +81,11 @@ public class ControlIlluminationShader : MonoBehaviour
         Shader.SetGlobalFloat(GlobaLmaskRadius, radius);
         Shader.SetGlobalFloat(GlobaLmaskSoftness, softness);
     }
-    public void SpawnUndistorted()
+    public void SpawnUndistorted(Vector3 pos)
     {
-        cloneUndistortedLins = Instantiate(undistortedLins, new Vector3(GetMouseOnScreenPosition().x, 
-            GetMouseOnScreenPosition().y, GetMouseOnScreenPosition().z - 2), undistortedLins.transform.rotation);
+        pos = new Vector3(GetMouseOnScreenPosition().x,
+            GetMouseOnScreenPosition().y, GetMouseOnScreenPosition().z - 2);
+
+        cloneUndistortedLins = Instantiate(undistortedLins, pos, undistortedLins.transform.rotation);
     }
 }
