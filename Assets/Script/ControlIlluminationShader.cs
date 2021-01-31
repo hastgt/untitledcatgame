@@ -102,6 +102,15 @@ public class ControlIlluminationShader : MonoBehaviour
                     Image image = uiCounting.textBox;
                     StartCoroutine(DisableThings(text, image));
                 }
+                if (hit.collider.name == "soulPrefabShelf")
+                {
+                    uiCounting.FoundTheSoul(hit);
+                    uiCounting.mementoText[6].gameObject.SetActive(true);
+                    uiCounting.textBox.gameObject.SetActive(true);
+                    TMP_Text text = uiCounting.mementoText[6];
+                    Image image = uiCounting.textBox;
+                    StartCoroutine(DisableThings(text, image));
+                }
             }
             SpawnUndistorted(GetMouseOnScreenPosition());
         }
