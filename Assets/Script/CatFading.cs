@@ -17,7 +17,7 @@ public class CatFading : MonoBehaviour
         if (cat.color.a <= 0 && !isFaded)
         {
             isFaded = true;
-            Invoke("LoadNextScene", 2f);
+            Invoke("LoadNextScene", 20f);
         }
     }
     private void LoadNextScene()
