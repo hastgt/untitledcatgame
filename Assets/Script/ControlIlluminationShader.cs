@@ -48,7 +48,7 @@ public class ControlIlluminationShader : MonoBehaviour
         //}
     }
 
-    private Vector3 GetMouseOnScreenPosition()
+    public Vector3 GetMouseOnScreenPosition()
     {
         // pixel coordinates (x, y)
         Vector3 touchPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraZOffset);

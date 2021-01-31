@@ -25,10 +25,13 @@ public class UIcountingSouls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Debug.Log("click registered");
+            
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
             Debug.DrawRay(ray.origin, ray.direction, Color.red, 2f);
-            if (Physics.Raycast(ray, out hit,10000f, soulsLayer))
+
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity, soulsLayer))
             {
                 Debug.Log("casting ray");
 
