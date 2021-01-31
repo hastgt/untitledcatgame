@@ -6,7 +6,12 @@ using UnityEngine;
 
 public class ControlIlluminationShader : MonoBehaviour
 {
-    public Transform player;
+    public static ControlIlluminationShader Instance
+    {
+        get;
+        private set;
+    }
+
     public float cameraZOffset;
     public GameObject undistortedLins;
 
@@ -25,27 +30,30 @@ public class ControlIlluminationShader : MonoBehaviour
     private static readonly int GlobaLmaskSoftness = Shader.PropertyToID("GLOBALmask_Softness");
     private static readonly int GlobaLmaskRadius = Shader.PropertyToID("GLOBALmask_Radius");
 
+    private void Update()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Debug.Log("heh");
+            Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
+        }
+    }
+
     private void Awake()
     {
         _mCamera = Camera.main;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        DistortOnMouseClick();
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    RaycastHit2D hit = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-        //    if (hit.collider != null)
-        //    {
-        //        Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-        //    }
-        //    else
-        //        Debug.Log("nothing");
-        //}
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private Vector3 GetMouseOnScreenPosition()
@@ -53,11 +61,9 @@ public class ControlIlluminationShader : MonoBehaviour
         // pixel coordinates (x, y)
         Vector3 touchPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraZOffset);
 
-        // z coordinate of game object on screen
-
         return _mCamera.ScreenToWorldPoint(touchPoint);
     }
-    private void DistortOnMouseClick()
+    public void UndistortOnMouseClick()
     {
         Vector3 neededPos = GetMouseOnScreenPosition();
 
@@ -74,9 +80,9 @@ public class ControlIlluminationShader : MonoBehaviour
         Shader.SetGlobalFloat(GlobaLmaskRadius, radius);
         Shader.SetGlobalFloat(GlobaLmaskSoftness, softness);
     }
-    private void SpawnUndistorted()
+    public void SpawnUndistorted()
     {
-        
-        //cloneUndistortedLins = Instantiate(undistortedLins, GetMouseOnScreenPosition(), spawnObjectTransform.rotation);
+        cloneUndistortedLins = Instantiate(undistortedLins, new Vector3(GetMouseOnScreenPosition().x, 
+            GetMouseOnScreenPosition().y, GetMouseOnScreenPosition().z - 2), undistortedLins.transform.rotation);
     }
 }
