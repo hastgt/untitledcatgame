@@ -13,21 +13,6 @@ public class AudioManager : MonoBehaviour
         private set;
     }
 
-    void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         music = FMODUnity.RuntimeManager.CreateInstance(musicEventPath);
