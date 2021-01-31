@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIcountingSouls : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class UIcountingSouls : MonoBehaviour
     public Camera cam;
 
     public int _soulsCollected = 0;
-
+    private bool _isWon = false;
     public TMP_Text _maxSoulText;
     public TMP_Text _countText;
     public Image _soulIcon;
@@ -63,8 +65,21 @@ public class UIcountingSouls : MonoBehaviour
                 
             //}
         }
+    }
 
-        
+
+    private void LateUpdate()
+    {
+        if (_soulsCollected == 7 && _isWon == false)
+        {
+            _isWon = true;
+            Invoke("LoadNextScene", 3f);
+        }
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void FoundTheSoul(RaycastHit hit)
@@ -124,5 +139,4 @@ public class UIcountingSouls : MonoBehaviour
         }
     }
 
-    
 }
