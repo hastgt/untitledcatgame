@@ -20,6 +20,7 @@ public class ControlIlluminationShader : MonoBehaviour
     private Vector3 mousePos, smoothPoint;
     private Ray ray;
     private RaycastHit hit;
+    public UIcountingSouls uiCounting;
     
     [Range(0, 10)]
     [SerializeField] private float radius, softness;
@@ -35,9 +36,13 @@ public class ControlIlluminationShader : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            Debug.Log("heh");
+        { 
             Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
+            Debug.Log(hit.collider.name);
+            if(hit.collider.name == "soulPrefab")
+            {
+                uiCounting.FoundTheSoul(hit);
+            }
         }
     }
 
